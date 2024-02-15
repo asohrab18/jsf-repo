@@ -8,6 +8,8 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private String country;
+	private String gender;
+	private String[] favoriteLanguages;
 
 	public String getFirstName() {
 		return firstName;
@@ -33,4 +35,19 @@ public class Student {
 		this.country = country;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String[] getFavoriteLanguages() {
+		return favoriteLanguages;
+	}
+
+	public void setFavoriteLanguages(String[] favoriteLanguages) {
+		this.favoriteLanguages = favoriteLanguages;
+	}
 }
