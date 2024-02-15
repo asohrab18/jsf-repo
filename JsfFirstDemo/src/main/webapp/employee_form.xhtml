@@ -1,9 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" 
-xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://xmlns.jcp.org/jsf/html"
-xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
 	<title>Registration Form</title>
@@ -20,8 +19,24 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 		<br />
 		Country: 
 		<h:selectOneMenu value="#{employee.country}">
-			<f:selectItems value="#{employee.countryOptions}"/>
+			<f:selectItems value="#{employee.countryOptions}" />
 		</h:selectOneMenu>
+		<br />
+		<br />
+		Gender:
+		<h:selectOneRadio value="#{employee.gender}">
+			<f:selectItems value="#{employee.genderOptions}" />
+		</h:selectOneRadio>
+		<br />
+		<br />
+		Favorite Programming Languages:
+		<h:selectManyCheckbox value="#{employee.favoriteLanguages}">
+			<f:selectItem itemValue="C#" itemLabel="C#" />
+			<f:selectItem itemValue="Java" itemLabel="Java" />
+			<f:selectItem itemValue="PHP" itemLabel="PHP" />
+			<f:selectItem itemValue="Ruby" itemLabel="Ruby" />
+			<f:selectItem itemValue="SQL" itemLabel="SQL" />
+		</h:selectManyCheckbox>
 		<br />
 		<br />
 		<h:commandButton value="Submit" action="employee_response" />
