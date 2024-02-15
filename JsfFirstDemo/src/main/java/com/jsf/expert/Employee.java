@@ -15,12 +15,13 @@ public class Employee {
 	private String gender;
 	private List<String> genderOptions;
 	private String[] favoriteLanguages;
+	private List<String> languageOptions;
 
 	public Employee() {
 		countryOptions = Arrays.asList("Australia", "Brazil", "China", "Denmark", "France", "Germany", "India", "Japan",
 				"Malaysia", "Netherlands");
 		genderOptions = Arrays.asList("Male", "Female", "Others");
-
+		languageOptions = Arrays.asList("C#", "Golang", "HTML", "Java", "PHP", "Ruby", "SQL", "TypeScript");
 	}
 
 	public List<String> getCountryOptions() {
@@ -29,6 +30,10 @@ public class Employee {
 
 	public List<String> getGenderOptions() {
 		return genderOptions;
+	}
+
+	public List<String> getLanguageOptions() {
+		return languageOptions;
 	}
 
 	public String getFirstName() {

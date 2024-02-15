@@ -31,11 +31,7 @@
 		<br />
 		Favorite Programming Languages:
 		<h:selectManyCheckbox value="#{employee.favoriteLanguages}">
-			<f:selectItem itemValue="C#" itemLabel="C#" />
-			<f:selectItem itemValue="Java" itemLabel="Java" />
-			<f:selectItem itemValue="PHP" itemLabel="PHP" />
-			<f:selectItem itemValue="Ruby" itemLabel="Ruby" />
-			<f:selectItem itemValue="SQL" itemLabel="SQL" />
+			<f:selectItems value="#{employee.languageOptions}" />
 		</h:selectManyCheckbox>
 		<br />
 		<br />
