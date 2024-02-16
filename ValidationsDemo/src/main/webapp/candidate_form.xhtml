@@ -17,13 +17,13 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
 	<h2>Candidate Registration Form</h2>
 	<h:form>
-		First Name: <h:inputText label="First Name" value="#{candidate.firstName}" id="firstName"/>
+		First Name: <h:inputText label="First Name" value="#{candidate.firstName}"/>
 		<br />
 		<br />
-		Last Name: <h:inputText label="Last Name" value="#{candidate.lastName}" id="lastName" 
+		Last Name: <h:inputText label="Last Name" value="#{candidate.lastName}" id="last_name" 
 		required="true"	requiredMessage="Last Name is mandatory." />
 
-		<h:message for="lastName" styleClass="error"/>
+		<h:message for="last_name" styleClass="error"/>
 		<br />
 		<br />
 		Email: <h:inputText label="Email"  value="#{candidate.email}" id="email" 
