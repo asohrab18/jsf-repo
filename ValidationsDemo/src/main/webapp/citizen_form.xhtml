@@ -24,7 +24,7 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 		<br />
 		
 		Free Passes: 
-		<h:inputText label="Free Passes" value="#{citizen.freePasses}" id="free_passes">
+		<h:inputText label="Free Passes" value="#{citizen.freePasses}" id="free_passes" required="true">
 			<f:validateLongRange minimum="0"  maximum="10"/>
 		</h:inputText>
 		<h:message for="free_passes" styleClass="error"/>
@@ -32,7 +32,7 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 		<br />
 		
 		Postal Code: 
-		<h:inputText label="Postal Code" value="#{citizen.postalCode}" id="postal_code">
+		<h:inputText label="Postal Code" value="#{citizen.postalCode}" id="postal_code" required="true">
 			<f:validateLength minimum="5"  maximum="5"/>
 		</h:inputText>
 		<h:message for="postal_code" styleClass="error"/>

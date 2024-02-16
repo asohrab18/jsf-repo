@@ -19,11 +19,13 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 		First Name: <h:inputText label="First Name" value="#{person.firstName}"/>
 		<br />
 		<br />
-		Last Name: <h:inputText label="Last Name" value="#{person.lastName}" />
+		Last Name: <h:inputText label="Last Name" value="#{person.lastName}"/>
 		<br />
 		<br />
 		Phone Number: 
-		<h:inputText label="Phone Number"  value="#{person.phoneNumber}" id="phone_number"  validatorMessage="Phone Number must follow xxx-xxx-xxxx">
+		<h:inputText label="Phone Number"  value="#{person.phoneNumber}" id="phone_number"  
+		validatorMessage="Phone Number must follow xxx-xxx-xxxx" required="true">
+			
 			<f:validateRegex pattern="\d{3}-\d{3}-\d{4}"/>
 		</h:inputText>
 		

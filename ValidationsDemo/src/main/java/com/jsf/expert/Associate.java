@@ -44,7 +44,11 @@ public class Associate {
 		}
 		String data = value.toString();
 		if (!data.startsWith("LUV")) {
-			FacesMessage message = new FacesMessage("Course Cose must start with LUV");
+			FacesMessage message = new FacesMessage("Course Code must start with LUV");
+			throw new ValidatorException(message);
+		}
+		if (data.length() <= 3) {
+			FacesMessage message = new FacesMessage("Please write your complete Course Code.");
 			throw new ValidatorException(message);
 		}
 	}

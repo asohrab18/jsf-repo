@@ -24,7 +24,7 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 		<br />
 		Course Code: 
 		<h:inputText label="Course Code"  value="#{associate.courseCode}" id="course_code"  
-		validator="#{associate.validateCourseCode}"/>
+		validator="#{associate.validateCourseCode}" required="true"/>
 		
 		<h:message for="course_code" styleClass="error"/>
 		<br />
