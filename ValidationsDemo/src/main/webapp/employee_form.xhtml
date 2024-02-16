@@ -17,19 +17,18 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
 	<h2>Registration Form</h2>
 	<h:form>
-		First Name: <h:inputText label="First Name" value="#{student.firstName}" id="firstName"/>
-		<h:message for="firstName" styleClass="error"/>
+		First Name: <h:inputText label="First Name" value="#{employee.firstName}" id="firstName"/>
 		<br />
 		<br />
-		Last Name: <h:inputText label="Last Name"  value="#{student.lastName}" id="lastName" required="true"/>
+		Last Name: <h:inputText label="Last Name"  value="#{employee.lastName}" id="lastName" required="true"/>
 		<h:message for="lastName" styleClass="error"/>
 		<br />
 		<br />
-		Email: <h:inputText label="Email"  value="#{student.email}" id="email" required="true"/>
+		Email: <h:inputText label="Email"  value="#{employee.email}" id="email" required="true"/>
 		<h:message for="email" styleClass="error"/>
 		<br />
 		<br />
-		<h:commandButton value="Submit" action="student_response" />
+		<h:commandButton value="Submit" action="employee_response" />
 	</h:form>
 </h:body>
 </html>
