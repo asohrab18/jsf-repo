@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!-- itemLabel is shown on UI in options while itemValue goes at backend corresponding to selection on UI. -->
+<h:head>
+	<title>Registration Form</title>
+	<style>
+		.error {
+			color: red
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<h2>Registration Form</h2>
+	<h:form>
+		<h:messages styleClass="error" />
+		First Name: <h:inputText label="First Name" value="#{student.firstName}" />
+		<br />
+		<br />
+		Last Name: <h:inputText label="Last Name"  value="#{student.lastName}"  required="true"/>
+		<br />
+		<br />
+		Email: <h:inputText label="Email"  value="#{student.email}"  required="true"/>
+		<br />
+		<br />
+		<h:commandButton value="Submit" action="student_response" />
+	</h:form>
+</h:body>
+</html>
