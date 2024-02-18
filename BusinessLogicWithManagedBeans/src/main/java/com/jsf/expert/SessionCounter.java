@@ -1,17 +1,17 @@
 package com.jsf.expert;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@ApplicationScoped
-public class Counter {
+@SessionScoped
+public class SessionCounter {
 
 	private int dataValue = 0;
 
 	public String increment() {
 		dataValue++;
-		return "counter";
+		return "session_counter";
 	}
 
 	public int getDataValue() {
