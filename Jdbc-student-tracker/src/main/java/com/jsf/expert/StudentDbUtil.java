@@ -17,15 +17,15 @@ public class StudentDbUtil {
 	private static StudentDbUtil instance;
 	private DataSource dataSource;
 	private String jndiName = "java:comp/env/jdbc/student_tracker";
-	
+
 	public static StudentDbUtil getInstance() throws Exception {
 		if (instance == null) {
 			instance = new StudentDbUtil();
 		}
 		return instance;
 	}
-	
-	private StudentDbUtil() throws Exception {		
+
+	private StudentDbUtil() throws Exception {
 		dataSource = getDataSource();
 	}
 
@@ -34,7 +34,7 @@ public class StudentDbUtil {
 		DataSource theDataSource = (DataSource) context.lookup(jndiName);
 		return theDataSource;
 	}
-		
+
 	public List<Student> getStudents() throws Exception {
 		List<Student> students = new ArrayList<>();
 		Connection myConn = null;
@@ -42,7 +42,7 @@ public class StudentDbUtil {
 		ResultSet myRs = null;
 		try {
 			myConn = getConnection();
-			String sql = "select * from student order by last_name";
+			String sql = "select * from student order by first_name";
 			myStmt = myConn.createStatement();
 			myRs = myStmt.executeQuery(sql);
 			while (myRs.next()) {
@@ -50,14 +50,13 @@ public class StudentDbUtil {
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
 				String email = myRs.getString("email");
-				
+
 				Student tempStudent = new Student(id, firstName, lastName, email);
 				students.add(tempStudent);
 			}
-			return students;		
-		}
-		finally {
-			close (myConn, myStmt, myRs);
+			return students;
+		} finally {
+			close(myConn, myStmt, myRs);
 		}
 	}
 
@@ -71,14 +70,12 @@ public class StudentDbUtil {
 			myStmt.setString(1, theStudent.getFirstName());
 			myStmt.setString(2, theStudent.getLastName());
 			myStmt.setString(3, theStudent.getEmail());
-			myStmt.execute();			
+			myStmt.execute();
+		} finally {
+			close(myConn, myStmt);
 		}
-		finally {
-			close (myConn, myStmt);
-		}
-		
 	}
-	
+
 	public Student getStudent(int studentId) throws Exception {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -95,95 +92,70 @@ public class StudentDbUtil {
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
 				String email = myRs.getString("email");
-				
+
 				theStudent = new Student(id, firstName, lastName, email);
-			}
-			else {
+			} else {
 				throw new Exception("Could not find student id: " + studentId);
 			}
 			return theStudent;
-		}
-		finally {
-			close (myConn, myStmt, myRs);
+		} finally {
+			close(myConn, myStmt, myRs);
 		}
 	}
-	
-	public void updateStudent(Student theStudent) throws Exception {
 
+	public void updateStudent(Student theStudent) throws Exception {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-
 		try {
 			myConn = getConnection();
-
-			String sql = "update student "
-						+ " set first_name=?, last_name=?, email=?"
-						+ " where id=?";
-
+			String sql = "update student " + " set first_name=?, last_name=?, email=?" + " where id=?";
 			myStmt = myConn.prepareStatement(sql);
-
-			// set params
 			myStmt.setString(1, theStudent.getFirstName());
 			myStmt.setString(2, theStudent.getLastName());
 			myStmt.setString(3, theStudent.getEmail());
 			myStmt.setInt(4, theStudent.getId());
-			
 			myStmt.execute();
+		} finally {
+			close(myConn, myStmt);
 		}
-		finally {
-			close (myConn, myStmt);
-		}
-		
 	}
-	
-	public void deleteStudent(int studentId) throws Exception {
 
+	public void deleteStudent(int studentId) throws Exception {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-
 		try {
 			myConn = getConnection();
-
 			String sql = "delete from student where id=?";
-
 			myStmt = myConn.prepareStatement(sql);
-
-			// set params
 			myStmt.setInt(1, studentId);
-			
 			myStmt.execute();
+		} finally {
+			close(myConn, myStmt);
 		}
-		finally {
-			close (myConn, myStmt);
-		}		
-	}	
-	
+	}
+
 	private Connection getConnection() throws Exception {
 		Connection theConn = dataSource.getConnection();
 		return theConn;
 	}
-	
+
 	private void close(Connection theConn, Statement theStmt) {
 		close(theConn, theStmt, null);
 	}
-	
-	private void close(Connection theConn, Statement theStmt, ResultSet theRs) {
 
+	private void close(Connection theConn, Statement theStmt, ResultSet theRs) {
 		try {
 			if (theRs != null) {
 				theRs.close();
 			}
-
 			if (theStmt != null) {
 				theStmt.close();
 			}
-
 			if (theConn != null) {
 				theConn.close();
 			}
-			
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-	}	
+	}
 }

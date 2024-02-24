@@ -43,6 +43,12 @@
 					<f:facet name="header">Email</f:facet>
 					#{tempStudent.email}
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Action</f:facet>
+					<h:commandLink value="Update" action="#{studentController.loadStudent(tempStudent.id)}"/>
+				</h:column>
+				
 			</h:dataTable>
 			</h:form>
 		</div>
