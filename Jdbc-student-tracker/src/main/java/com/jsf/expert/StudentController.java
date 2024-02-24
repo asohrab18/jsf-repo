@@ -33,7 +33,19 @@ public class StudentController {
 			addErrorMessage(exc);
 		}
 	}
-				
+	
+	public String addStudent(Student theStudent) {
+		logger.info("Adding student: " + theStudent);
+		try {
+			studentDbUtil.addStudent(theStudent);
+		} catch (Exception exc) {
+			logger.log(Level.SEVERE, "Error adding students", exc);
+			addErrorMessage(exc);
+			return null;
+		}
+		return "list-students?faces-redirect=true";
+	}
+		
 	private void addErrorMessage(Exception exc) {
 		FacesMessage message = new FacesMessage("Error: " + exc.getMessage());
 		FacesContext.getCurrentInstance().addMessage(null, message);

@@ -62,22 +62,15 @@ public class StudentDbUtil {
 	}
 
 	public void addStudent(Student theStudent) throws Exception {
-
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-
 		try {
 			myConn = getConnection();
-
 			String sql = "insert into student (first_name, last_name, email) values (?, ?, ?)";
-
 			myStmt = myConn.prepareStatement(sql);
-
-			// set params
 			myStmt.setString(1, theStudent.getFirstName());
 			myStmt.setString(2, theStudent.getLastName());
 			myStmt.setString(3, theStudent.getEmail());
-			
 			myStmt.execute();			
 		}
 		finally {
@@ -87,39 +80,27 @@ public class StudentDbUtil {
 	}
 	
 	public Student getStudent(int studentId) throws Exception {
-	
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
-		
 		try {
 			myConn = getConnection();
-
 			String sql = "select * from student where id=?";
-
 			myStmt = myConn.prepareStatement(sql);
-			
-			// set params
 			myStmt.setInt(1, studentId);
-			
 			myRs = myStmt.executeQuery();
-
 			Student theStudent = null;
-			
-			// retrieve data from result set row
 			if (myRs.next()) {
 				int id = myRs.getInt("id");
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
 				String email = myRs.getString("email");
-
-				theStudent = new Student(id, firstName, lastName,
-						email);
+				
+				theStudent = new Student(id, firstName, lastName, email);
 			}
 			else {
 				throw new Exception("Could not find student id: " + studentId);
 			}
-
 			return theStudent;
 		}
 		finally {
