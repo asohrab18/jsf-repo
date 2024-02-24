@@ -45,16 +45,13 @@ public class StudentDbUtil {
 			String sql = "select * from student order by last_name";
 			myStmt = myConn.createStatement();
 			myRs = myStmt.executeQuery(sql);
-			// process result set
 			while (myRs.next()) {
-				// retrieve data from result set row
 				int id = myRs.getInt("id");
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
 				String email = myRs.getString("email");
-				// create new student object
+				
 				Student tempStudent = new Student(id, firstName, lastName, email);
-				// add it to the list of students
 				students.add(tempStudent);
 			}
 			return students;		
