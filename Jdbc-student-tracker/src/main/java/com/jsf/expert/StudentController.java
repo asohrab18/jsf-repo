@@ -22,21 +22,14 @@ public class StudentController {
 		students = new ArrayList<>();
 		studentDbUtil = StudentDbUtil.getInstance();
 	}
-	
-	public List<Student> getStudents() {
-		return students;
-	}
 
 	public void loadStudents() {
 		logger.info("Loading students");
 		students.clear();
 		try {
-			// get all students from database
 			students = studentDbUtil.getStudents();
 		} catch (Exception exc) {
-			// send this to server logs
 			logger.log(Level.SEVERE, "Error loading students", exc);
-			// add error message for JSF page
 			addErrorMessage(exc);
 		}
 	}
@@ -44,5 +37,9 @@ public class StudentController {
 	private void addErrorMessage(Exception exc) {
 		FacesMessage message = new FacesMessage("Error: " + exc.getMessage());
 		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+	
+	public List<Student> getStudents() {
+		return students;
 	}
 }
